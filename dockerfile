@@ -68,9 +68,9 @@ RUN touch /var/log/cron.log
 
 RUN echo "0 * * * * /config/scripts/cron.sh > /dev/null 2>&1" >> /etc/crontab
 
-COPY config/apache-default.conf /etc/apache2/sites-available/000-default.conf
-COPY script/ldap_to_authz.py /ldap_to_authz.py
-COPY script/start.sh /start.sh
+COPY apache-default.conf /etc/apache2/sites-available/000-default.conf
+COPY ldap_to_authz.py /ldap_to_authz.py
+COPY start.sh /start.sh
 
 # Configure Apache to serve up Subversion
 RUN /usr/sbin/a2enmod auth_digest
@@ -87,6 +87,6 @@ VOLUME /etc/cron.d
 EXPOSE 80
 
 # Initialize configuration and run the web server
-CMD [ "/opt/start" ]
+#CMD [ "/opt/start" ]
 
-# CMD ["/start.sh"]
+CMD ["/start.sh"]
