@@ -1,1 +1,1 @@
-# git-as-svn
+# viewvc-ldap-svn
