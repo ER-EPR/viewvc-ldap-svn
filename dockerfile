@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:xenial
 MAINTAINER xucong <shark_xc@hotmail.com>
 ENV APACHE_RUN_USER    www-data
 ENV APACHE_RUN_GROUP   www-data
@@ -68,15 +68,15 @@ RUN touch /var/log/cron.log
 
 RUN echo "0 * * * * /config/scripts/cron.sh > /dev/null 2>&1" >> /etc/crontab
 
-COPY apache-default.conf /etc/apache2/sites-available/000-default.conf
-COPY ldap_to_authz.py /ldap_to_authz.py
-COPY start.sh /start.sh
+Add apache-default.conf /etc/apache2/sites-available/000-default.conf
+Add ldap_to_authz.py /ldap_to_authz.py
+Add start.sh /start.sh
+# Add the start script
+# ADD start /opt/
 
 # Configure Apache to serve up Subversion
 RUN /usr/sbin/a2enmod auth_digest
 
-# Add the start script
-ADD start /opt/
 
 # Archives and configuration are stored in /svn
 VOLUME /svn
